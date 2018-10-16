@@ -2,8 +2,6 @@ package com.dowell.dal.form;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.extern.log4j.Log4j;
-
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -22,6 +20,11 @@ public class UserForm {
 	@NotBlank(message="密码不能为空")
 	private String password;
 
+	@ApiModelProperty(value = "验证码")
+	private String code;
+
+	private Boolean rememberMe;
+
 	public String getMobile() {
 		return mobile;
 	}
@@ -36,5 +39,21 @@ public class UserForm {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Boolean getRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(Boolean rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 }

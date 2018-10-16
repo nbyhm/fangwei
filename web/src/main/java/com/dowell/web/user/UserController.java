@@ -14,9 +14,12 @@ import com.dowell.service.user.UserService;
 import com.dowell.web.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.code.kaptcha.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +80,17 @@ public class UserController extends BaseController {
 	@PostMapping("login")
 	@ApiOperation("用户登录")
 	public ResponseBo login(@RequestBody UserForm form){
+
+		if (!StringUtils.isNotBlank(form.getCode())) {
+			return ResponseBo.warn("验证码不能为空！");
+		}
+
+		Session session = super.getSession();
+		String sessionCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+		if (!form.getCode().equalsIgnoreCase(sessionCode)) {
+			return ResponseBo.warn("验证码错误！");
+		}
+
 		//表单效验
 		ValidatorUtils.validateEntity(form);
 		Map<String, Object> map = userService.login(form);

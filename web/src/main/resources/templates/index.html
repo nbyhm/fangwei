@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <title>Noah</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="shortcut icon" type="image/png" th:href="@{/favicon.ico}" />
 </head>
 <body>
-    <h1>NOAH</h1>
+<div>
+    <h1 style="text-align: center">NOAH</h1>
+    <div><span data-th-text="${name}"></span></div>
+</div>
 </body>
 </html>
