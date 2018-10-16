@@ -18,7 +18,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * @author nanbo
- * @description Swagger配置,访问url: http://localhost:8080/fangwei-web/swagger-ui.html
+ * @description Swagger配置,访问url: http://localhost:8080/noah-web/swagger-ui.html
  * @create 2018-09-30
  **/
 @Configuration

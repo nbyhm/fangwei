@@ -6,7 +6,7 @@ server:
     min-spare-threads: 30
   port: 8080
   servlet:
-    context-path: /fangwei-web
+    context-path: /noah-web
 
 spring:
   # 环境 dev|test|prod
