@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.dowell</groupId>
-		<artifactId>noah</artifactId>
+		<artifactId>fangwei</artifactId>
 		<version>3.2.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -12,33 +12,7 @@
 	<packaging>jar</packaging>
 
 	<name>util</name>
-	<description>noah-util</description>
-
-	<properties>
-		<swagger.version>2.7.0</swagger.version>
-		<hutool.version>4.0.9</hutool.version>
-	</properties>
-
-	<dependencies>
-		<!-- hutool -->
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>${hutool.version}</version>
-		</dependency>
-
-		<!-- swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-	</dependencies>
+	<description>dowell-util</description>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

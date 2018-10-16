@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.dowell</groupId>
-		<artifactId>noah</artifactId>
+		<artifactId>fangwei</artifactId>
 		<version>3.2.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -12,13 +12,14 @@
 	<packaging>jar</packaging>
 
 	<name>service</name>
-	<description>noah-service</description>
-
-	<properties>
-
-	</properties>
+	<description>dowell-service</description>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.dowell</groupId>
+			<artifactId>common</artifactId>
+			<version>3.2.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.dowell</groupId>
 			<artifactId>dal</artifactId>
