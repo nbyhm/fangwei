@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
     <title>Noah</title>
     <link rel="shortcut icon" type="image/png" th:href="@{/favicon.ico}" />
+    <script th:src="@{/js/jquery.min.js}"></script>
 </head>
 <body>
 <div>
     <h1 style="text-align: center">NOAH</h1>
-    <div><span data-th-text="${name}"></span></div>
+    <!--<div><span id="spanBtn" data-th-text="${name}"></span></div>-->
+    <div class="form-group">
+        <label>用户名</label>
+        <input type="text" name="username" />
+    </div>
+    <div><button onclick="login()" id="loginButton">登录</button></div>
+
+    <script>
+        function login() {
+            var username = $(".one input[name='username']").val();
+            alert(username);
+        }
+    </script>
 </div>
 </body>
 </html>

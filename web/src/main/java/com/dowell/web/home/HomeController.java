@@ -9,6 +9,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +20,7 @@ import org.thymeleaf.util.DateUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,6 +34,7 @@ import java.util.Map;
  **/
 @Controller
 @Api(tags = "测试类")
+@Slf4j
 public class HomeController extends BaseController {
 
     @Autowired
@@ -43,24 +43,20 @@ public class HomeController extends BaseController {
     @Autowired
     private Producer producer;
 
-    @GetMapping("gifCode")
-    public void captcha(HttpServletResponse response, HttpServletRequest request)throws IOException {
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/gif");
+    @RequestMapping("captcha.jpg")
+    public void captcha(HttpServletResponse response)throws IOException {
+        response.setHeader("Cache-Control", "no-store, no-cache");
+        response.setContentType("image/jpeg");
 
         //生成文字验证码
         String text = producer.createText();
         //生成图片验证码
         BufferedImage image = producer.createImage(text);
+        //保存到shiro session
+        ShiroUtils.setSessionAttribute(Constants.KAPTCHA_SESSION_KEY, text);
 
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(image, "jpg", out);
-
-        HttpSession session = request.getSession(true);
-        session.removeAttribute(Constants.KAPTCHA_SESSION_KEY);
-        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, text.toLowerCase());
     }
 
     @ResponseBody

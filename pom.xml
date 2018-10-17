@@ -307,6 +307,13 @@
 			<version>${kaptcha.version}</version>
 		</dependency>
 
+		<!-- springboot项目的热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<!-- 阿里云maven仓库 -->

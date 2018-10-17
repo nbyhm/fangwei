@@ -11,7 +11,7 @@ import java.util.List;
  **/
 @Service
 public interface IService<T> {
-
+    //查询
     List<T> selectAll();
 
     T selectByKey(Object key);

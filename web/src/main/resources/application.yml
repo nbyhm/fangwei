@@ -4,7 +4,7 @@ server:
     uri-encoding: UTF-8
     max-threads: 1000
     min-spare-threads: 30
-  port: 8080
+  port: 8081
   servlet:
     context-path: /noah-web
 
@@ -34,21 +34,30 @@ spring:
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
 
-  mvc:
-    throw-exception-if-no-handler-found: true
-    static-path-pattern: /static/**
-  resources:
-    add-mappings: false
-
   thymeleaf:
     cache: false
 
+#noah配置
 noah:
   redis:
     open: false  # 是否开启redis缓存  true开启   false关闭
   shiro:
     redis: false # true表示shiro session存到redis里，需要开启redis，才会生效【分布式场景】
 
+  # 时间类型参数在前端页面的展示格式，默认格式为 yyyy-MM-dd HH:mm:ss
+  timeFormat: yyyy-MM-dd HH:mm:ss
+  # 是否开启 AOP 日志，默认开启
+  openAopLog: true
+  # 验证码
+  validateCode:
+    # 宽度，默认 146px
+    width: 146
+    # 高度，默认 33px
+    height: 33
+    # 验证码字符个数，默认4个字符
+    length: 4
+
+#mybatis配置
 mybatis:
   # type-aliases扫描路径
   type-aliases-package: com.dowell.dal.entity

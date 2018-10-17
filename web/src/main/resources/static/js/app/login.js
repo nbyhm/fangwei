@@ -35,35 +35,35 @@ $(document).ready(function () {
 });
 
 
-function reloadCode() {
-    $("#validateCodeImg").attr("src", ctx + "gifCode?data=" + new Date() + "");
-}
+// function reloadCode() {
+//     $("#validateCodeImg").attr("src", ctx + "captcha.jpg?data=" + new Date() + "");
+// }
 
 function login() {
     var $loginButton = $("#loginButton");
-    var username = $(".one input[name='username']").val().trim();
+    var mobile = $(".one input[name='mobile']").val().trim();
     var password = $(".one input[name='password']").val().trim();
     var code = $(".one input[name='code']").val().trim();
     var rememberMe = $(".one input[name='rememberme']").is(':checked');
-    if (username === "") {
-        $MB.n_warning("请输入用户名！");
+    if (mobile === "") {
+        $MB.n_warning("请输入手机号！");
         return;
     }
     if (password === "") {
         $MB.n_warning("请输入密码！");
         return;
     }
-    if (code === "") {
+    /*if (code === "") {
         $MB.n_warning("请输入验证码！");
         return;
-    }
+    }*/
     $loginButton.html("").append("<div class='login-loder'><div class='line-scale'><div></div><div></div><div></div><div></div><div></div></div></div>");
 
     $.ajax({
         type: "post",
-        url: ctx + "login",
+        url: ctx + "api/login",
         data: {
-            "username": username,
+            "mobile": mobile,
             "password": password,
             "code": code,
             "rememberMe": rememberMe
@@ -73,7 +73,7 @@ function login() {
             if (r.code === 200) {
                 location.href = ctx + 'index';
             } else {
-                reloadCode();
+                // reloadCode();
                 $MB.n_warning(r.msg);
                 $loginButton.html("登录");
             }
@@ -86,13 +86,13 @@ function regist() {
     var password = $(".two input[name='password']").val().trim();
     var cpassword = $(".two input[name='cpassword']").val().trim();
     if (mobile === "") {
-        $MB.n_warning("用户名不能为空！");
+        $MB.n_warning("手机号不能为空！");
         return;
-    } else if (mobile.length > 10) {
-        $MB.n_warning("用户名长度不能超过10个字符！");
+    } else if (mobile.length > 12) {
+        $MB.n_warning("手机号长度不能超过11个字符！");
         return;
     } else if (mobile.length < 3) {
-        $MB.n_warning("用户名长度不能少于3个字符！");
+        $MB.n_warning("手机号格式不正确！");
         return;
     }
     if (password === "") {
@@ -109,7 +109,7 @@ function regist() {
     }
     $.ajax({
         type: "post",
-        url: ctx + "register",
+        url: ctx + "api/register",
         data: {
             "mobile": mobile,
             "password": password

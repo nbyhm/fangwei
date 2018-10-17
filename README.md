@@ -68,3 +68,10 @@ noah
 - swagger文档路径：http://localhost:8080/noah-web/swagger/index.html
 - 账号密码：admin/admin
 
+**引用js、css、img等静态资源文件，不要使用如下方式，不然加载不了，可直接方入static下引用**
+-  mvc:
+-    throw-exception-if-no-handler-found: true
+-    static-path-pattern: /static/**
+-  resources:
+-         add-mappings: false
+
