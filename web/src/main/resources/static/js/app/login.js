@@ -35,9 +35,9 @@ $(document).ready(function () {
 });
 
 
-// function reloadCode() {
-//     $("#validateCodeImg").attr("src", ctx + "captcha.jpg?data=" + new Date() + "");
-// }
+function reloadCode() {
+    $("#validateCodeImg").attr("src", ctx + "api/gifCode?data=" + new Date() + "");
+}
 
 function login() {
     var $loginButton = $("#loginButton");
@@ -53,10 +53,10 @@ function login() {
         $MB.n_warning("请输入密码！");
         return;
     }
-    /*if (code === "") {
+    if (code === "") {
         $MB.n_warning("请输入验证码！");
         return;
-    }*/
+    }
     $loginButton.html("").append("<div class='login-loder'><div class='line-scale'><div></div><div></div><div></div><div></div><div></div></div></div>");
 
     $.ajax({
@@ -70,10 +70,10 @@ function login() {
         },
         dataType: "json",
         success: function (r) {
-            if (r.code === 200) {
+            if (r.code === 0) {
                 location.href = ctx + 'index';
             } else {
-                // reloadCode();
+                reloadCode();
                 $MB.n_warning(r.msg);
                 $loginButton.html("登录");
             }

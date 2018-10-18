@@ -11,15 +11,14 @@ import com.dowell.dal.form.UserForm;
 import com.dowell.service.excel.ExcelService;
 import com.dowell.service.token.TokenService;
 import com.dowell.service.user.UserService;
-import com.dowell.shiro.ShiroUtils;
 import com.dowell.web.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,9 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Date;
@@ -54,6 +55,56 @@ public class UserController extends BaseController {
 
 	@Autowired
 	ExcelService excelService;
+
+	@Autowired
+	private Producer producer;
+
+	private static final String CODE_KEY = "_code";
+
+	/**
+	 * 图形验证码
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping("captcha.jpg")
+	public void captcha(HttpServletResponse response, HttpServletRequest request)throws IOException {
+		response.setHeader("Cache-Control", "no-store, no-cache");
+		response.setContentType("image/jpeg");
+
+		//生成文字验证码
+		String text = producer.createText();
+		//生成图片验证码
+		BufferedImage image = producer.createImage(text);
+
+		//保存到session
+		HttpSession session = request.getSession(true);
+		session.removeAttribute(CODE_KEY);
+		session.setAttribute(CODE_KEY, text.toLowerCase());
+
+		ServletOutputStream out = response.getOutputStream();
+		ImageIO.write(image, "jpg", out);
+	}
+
+	@GetMapping("gifCode")
+	public void getGifCode(HttpServletResponse response, HttpServletRequest request) {
+		try {
+			response.setHeader("Pragma", "No-cache");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", 0);
+			response.setContentType("image/gif");
+			String text = producer.createText();
+			//生成图片验证码
+			BufferedImage image = producer.createImage(text);
+			ServletOutputStream out = response.getOutputStream();
+			ImageIO.write(image, "jpg", out);
+
+			HttpSession session = request.getSession(true);
+			session.removeAttribute(CODE_KEY);
+			session.setAttribute(CODE_KEY, text.toLowerCase());
+		} catch (Exception e) {
+			log.error("图形验证码生成失败", e);
+		}
+	}
 
 	@UserLog("用户注册")
 	@PostMapping("register")
@@ -84,12 +135,16 @@ public class UserController extends BaseController {
 
 	@PostMapping("login")
 	@ApiOperation("用户登录")
-	public ResponseBo login(UserForm form){
+	public ResponseBo login(UserForm form, HttpServletRequest request){
 
-		/*String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
-		if(!form.getCode().equalsIgnoreCase(kaptcha)){
-			return ResponseBo.error("验证码不正确");
-		}*/
+		if (!StringUtils.isNotBlank(form.getCode())) {
+			return ResponseBo.warn("验证码不能为空！");
+		}
+		String sessionCode = (String) request.getSession().getAttribute(CODE_KEY);
+
+		if (!form.getCode().equalsIgnoreCase(sessionCode)) {
+			return ResponseBo.warn("验证码错误！");
+		}
 
 		//表单效验
 		ValidatorUtils.validateEntity(form);
