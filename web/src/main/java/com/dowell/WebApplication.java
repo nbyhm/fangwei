@@ -5,16 +5,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
+ * 继承org.springframework.boot.web.servlet.support.SpringBootServletInitializer，实现configure方法：
+ * 注：如果您正在构建WAR文件并部署它，则需要WebApplicationInitialize
  * extends SpringBootServletInitializer
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.dowell.*.*.mapper")
-public class WebApplication {
+public class WebApplication extends SpringBootServletInitializer {
 
 	private static Logger log = LoggerFactory.getLogger(WebApplication.class);
 
@@ -23,8 +27,8 @@ public class WebApplication {
 		log.info("Dowell started up successfully at {} {}", LocalDate.now(), LocalTime.now());
 	}
 
-	//@Override
-	//protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	//	return application.sources(WebApplication.class);
-	//}
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(WebApplication.class);
+	}
 }

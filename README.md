@@ -62,6 +62,7 @@ noah
 - 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
 - 修改application-dev.yml文件，更新MySQL账号和密码
 - 在noah目录下，执行mvn clean install
+- 执行JAR包,启动一个CMD或者其他命令行工具,执行"java -jar web.jar"命令运行。
 <br>
 
 - web访问路径：http://localhost:8080/noah-web
@@ -74,4 +75,18 @@ noah
 -    static-path-pattern: /static/**
 -  resources:
 -         add-mappings: false
+
+**SpringBoot打成war包，部署到Tomcat服务器**
+- 链接：https://blog.csdn.net/qq_33512843/article/details/80951741
+- SpringBoot默认达成jar包，使用SpringBoot构想web应用，默认使用内置的Tomcat。但考虑到项目需要集群部署或者进行优化时，
+- 就需要打成war包部署到外部的Tomcat服务器中。
+- 注意事项：
+- 使用外部Tomcat部署访问的时候，application.properties(或者application.yml)中配置的
+- server.port=
+- server.servlet.context-path=
+- 将失效，请使用tomcat的端口，tomcat，webapps下项目名进行访问。
+- 为了防止应用上下文所导致的项目访问资源加载不到的问题，
+- 建议pom.xml文件中<build></build>标签下添加<finalName></finalName>标签：
+
+
 
