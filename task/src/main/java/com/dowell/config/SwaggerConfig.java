@@ -35,24 +35,16 @@ public class SwaggerConfig {
 				//包下的类，才生成接口文档
 				//.apis(RequestHandlerSelectors.basePackage("com.dowell.task"))
 				.paths(PathSelectors.any())
-				.build()
-				.securitySchemes(security());
+				.build();
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("诺亚防伪")
+				.title("fangwei")
 				.description("fangwei-task文档")
-				.termsOfServiceUrl("http://www.dowell.com")
+				.termsOfServiceUrl("http://www.fangwei.com/task")
 				.version("3.2.0")
 				.build();
 	}
-
-	private List<ApiKey> security() {
-		return newArrayList(
-				new ApiKey("token", "token", "header")
-		);
-	}
-
 
 }

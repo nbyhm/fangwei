@@ -44,4 +44,6 @@ public interface UserService extends IService<UserEntity> {
     List<UserEntity> queryFreezeUsers(String mobile, String userName);
 
     Integer sum1(String mobile);
+
+    int insert(UserEntity entity);
 }

@@ -14,6 +14,10 @@
 	<name>task</name>
 	<description>dowell-task</description>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.dowell</groupId>

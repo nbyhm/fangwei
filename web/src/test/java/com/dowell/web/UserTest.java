@@ -91,12 +91,12 @@ public class UserTest extends WebApplicationTests {
         String mobile = "13119150962";
         String username = "15301888612";
 
-       /* Integer sum1 = userService.sum1(mobile);
+        Integer sum1 = userService.sum1(mobile);
 
         Integer sum2 = userService.sum1(mobile);
 
         Integer total = sum1 - sum2;
-        System.out.println(total);*/
+        System.out.println(total);
 
         //List<UserEntity> list = userService.queryFreezeUsers(mobile, username);
         //for (UserEntity userEntity : list){

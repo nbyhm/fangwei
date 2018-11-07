@@ -11,10 +11,12 @@ import com.dowell.service.token.TokenService;
 import com.dowell.service.user.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.jdbc.RuntimeSqlException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
@@ -116,5 +118,15 @@ public class UserServiceImpl extends BaseService<UserEntity> implements UserServ
 	@Override
 	public Integer sum1(String mobile) {
 		return userMapper.sum1(mobile);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insert(UserEntity entity) {
+
+        int result = userMapper.insertSelective(entity);
+        log.info("新增用户结果集：" + result);
+        throw new RuntimeSqlException("手动模拟新增时出现异常");
+        //return result;
 	}
 }

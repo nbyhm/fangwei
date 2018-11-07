@@ -40,9 +40,9 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("诺亚防伪")
-				.description("fangwei-api文档")
-				.termsOfServiceUrl("http://www.dowell.com")
+				.title("fangwei")
+				.description("fangwei-web文档")
+				.termsOfServiceUrl("http://www.fangwei.com/web")
 				.version("3.2.0")
 				.build();
 	}

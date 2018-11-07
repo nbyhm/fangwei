@@ -1,9 +1,10 @@
-# noah
-**项目说明**
+# fangwei
+**`项目说明`**
+================
 - 采用SpringBoot、MyBatis、Shiro框架，开发的一套权限系统
 <br>
 
-**项目结构** 
+**`项目结构`** 
 ```
 noah
 ├─web      后台管理模块
@@ -40,7 +41,7 @@ noah
 
 <br>
 
- **技术选型：** 
+ **`技术选型：`** 
 - 核心框架：Spring Boot 2.5
 - 安全框架：Apache Shiro 1.4
 - 持久层框架：MyBatis 3.3
@@ -49,14 +50,14 @@ noah
 
 <br>
 
- **软件需求** 
+ **`软件需求`** 
 - JDK1.8
 - MySQL5.6+
 - Maven3.5.0+
 
 <br>
 
- **本地部署**
+ **`本地部署`**
 - 通过git下载源码
 - 创建数据库noah，数据库编码为UTF-8
 - 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
@@ -65,18 +66,18 @@ noah
 - 执行JAR包,启动一个CMD或者其他命令行工具,执行"java -jar web.jar"命令运行。
 <br>
 
-- web访问路径：http://localhost:8080/noah-web
-- swagger文档路径：http://localhost:8080/noah-web/swagger/index.html
+- web访问路径：http://localhost:8080/web
+- swagger文档路径：http://localhost:8080/web/swagger/index.html
 - 账号密码：admin/admin
 
-**引用js、css、img等静态资源文件，不要使用如下方式，不然加载不了，可直接方入static下引用**
+**`引用js、css、img等静态资源文件，不要使用如下方式，不然加载不了，可直接方入static下引用`**
 -  mvc:
 -    throw-exception-if-no-handler-found: true
 -    static-path-pattern: /static/**
 -  resources:
 -         add-mappings: false
 
-**SpringBoot打成war包，部署到Tomcat服务器**
+**`SpringBoot打成war包，部署到Tomcat服务器`**
 - 链接：https://blog.csdn.net/qq_33512843/article/details/80951741
 - SpringBoot默认达成jar包，使用SpringBoot构想web应用，默认使用内置的Tomcat。但考虑到项目需要集群部署或者进行优化时，
 - 就需要打成war包部署到外部的Tomcat服务器中。
@@ -88,5 +89,6 @@ noah
 - 为了防止应用上下文所导致的项目访问资源加载不到的问题，
 - 建议pom.xml文件中<build></build>标签下添加<finalName></finalName>标签：
 
-
+**`用工具生成个性化图标`**
+- 位置链接是：http://patorjk.com/software/taag/
 

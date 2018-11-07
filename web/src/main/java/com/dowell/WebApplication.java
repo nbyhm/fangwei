@@ -17,7 +17,7 @@ import java.time.LocalTime;
  * extends SpringBootServletInitializer
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.dowell.*.*.mapper")
+@MapperScan(basePackages = "com.dowell.dal.mapper.*")
 public class WebApplication extends SpringBootServletInitializer {
 
 	private static Logger log = LoggerFactory.getLogger(WebApplication.class);
