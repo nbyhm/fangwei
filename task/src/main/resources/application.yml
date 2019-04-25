@@ -48,10 +48,10 @@ pagehelper:
 logging:
   level: debug
   level.com.dowell: debug
-  path: D:/logs/
+  path: /root/fangwei/logs/
   file: task.log
 
 export:
   excel:
-    tempDir: D://temp
+    tempDir: /root/fangwei/temp
 

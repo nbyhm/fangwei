@@ -1,5 +1,6 @@
 package com.dowell;
 
+import com.github.vindell.ip2region.spring.boot.EnableIP2region;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import java.time.LocalTime;
  * 注：如果您正在构建WAR文件并部署它，则需要WebApplicationInitialize
  * extends SpringBootServletInitializer
  */
+@EnableIP2region
 @SpringBootApplication
 @MapperScan(basePackages = "com.dowell.dal.mapper.*")
 public class WebApplication extends SpringBootServletInitializer {

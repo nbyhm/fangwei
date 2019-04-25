@@ -85,10 +85,10 @@ pagehelper:
 logging:
   level: debug
   level.com.dowell: debug
-  path: D:/logs/
+  path: /root/fangwei/logs/
   file: web.log
 
 export:
   excel:
-    tempDir: D://temp
+    tempDir: /root/fangwei/temp
 

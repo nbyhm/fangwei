@@ -9,7 +9,7 @@
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
     <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
     <result column="STATUS" jdbcType="CHAR" property="status" />
-    <result column="CRATE_TIME" jdbcType="TIMESTAMP" property="crateTime" />
+    <result column="CRATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="SSEX" jdbcType="CHAR" property="ssex" />
