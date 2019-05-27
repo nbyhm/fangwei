@@ -332,6 +332,25 @@
 			<version>1.0.1.RELEASE</version>
 		</dependency>
 
+		<!-- 阿里云邮件推送 -->
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-core</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-dm</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!-- JavaMailSender 发送邮件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<!-- 阿里云maven仓库 -->
